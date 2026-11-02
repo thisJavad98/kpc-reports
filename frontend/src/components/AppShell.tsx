@@ -6,14 +6,12 @@ import { useEffect, useState } from "react";
 import { Briefcase, List, SignOut, X } from "@phosphor-icons/react";
 import { AnimatePresence, motion } from "motion/react";
 import { useAuth } from "@/lib/auth";
-import { useLocale } from "@/lib/i18n/locale";
+import { t } from "@/lib/i18n/dictionaries";
 import { useMobileChrome } from "@/lib/mobile-chrome";
-import { LanguageToggle } from "./LanguageToggle";
 import { Mark } from "./Mark";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const { user, loading, logout } = useAuth();
-  const { t, dir } = useLocale();
   const { title, action } = useMobileChrome();
   const pathname = usePathname();
   const router = useRouter();
@@ -112,9 +110,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </div>
 
       <div className="mt-auto border-t border-[var(--border)] px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:px-3">
-        <div className="mb-3 px-1">
-          <LanguageToggle />
-        </div>
         <div className="mb-3 px-2">
           <div className="truncate text-[14px] text-[var(--text)] md:text-[13px]">
             {user.name}
@@ -189,13 +184,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               onClick={() => setOpen(false)}
             />
             <motion.div
-              initial={{ x: dir === "rtl" ? "100%" : "-100%" }}
+              initial={{ x: "-100%" }}
               animate={{ x: 0 }}
-              exit={{ x: dir === "rtl" ? "100%" : "-100%" }}
+              exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 380, damping: 36 }}
-              className={`absolute inset-y-0 flex w-[min(100%,360px)] flex-col bg-[var(--ground)] ${
-                dir === "rtl" ? "right-0" : "left-0"
-              }`}
+              className="absolute inset-y-0 left-0 flex w-[min(100%,360px)] flex-col bg-[var(--ground)]"
             >
               <div className="flex h-12 items-center justify-between border-b border-[var(--border)] px-3 pt-[env(safe-area-inset-top)]">
                 <div className="flex items-center gap-2">

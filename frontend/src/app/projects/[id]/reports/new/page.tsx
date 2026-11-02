@@ -16,14 +16,13 @@ import {
 } from "@/components/ui";
 import { api, ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
-import { useLocale } from "@/lib/i18n/locale";
+import { t } from "@/lib/i18n/dictionaries";
 import { useSetMobileChrome } from "@/lib/mobile-chrome";
 
 export default function NewReportPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
   const { token, user } = useAuth();
-  const { t } = useLocale();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState("");
@@ -61,7 +60,7 @@ export default function NewReportPage() {
           href={`/projects/${params.id}`}
           className="inline-flex min-h-11 items-center gap-1.5 text-[14px] text-[var(--muted)] hover:text-[var(--text)] md:min-h-0 md:text-[13px]"
         >
-          <ArrowLeft size={14} className="rtl:rotate-180" />
+          <ArrowLeft size={14} />
           {t("backToProject")}
         </Link>
       </div>

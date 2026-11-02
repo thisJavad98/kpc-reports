@@ -7,6 +7,22 @@ export type User = {
   role: Role;
 };
 
+export type ProjectTab =
+  | "INFORMATION"
+  | "TECHNICAL"
+  | "PROGRESS"
+  | "FINANCIAL";
+
+export type ProjectField = {
+  id: string;
+  tab: ProjectTab;
+  key: string;
+  value: string;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type ProjectSummary = {
   id: string;
   name: string;
@@ -26,7 +42,9 @@ export type ReportSummary = {
 };
 
 export type ProjectDetail = ProjectSummary & {
+  progressLastUpdatedAt: string | null;
   reports: ReportSummary[];
+  fields: ProjectField[];
 };
 
 export type ReportDetail = {

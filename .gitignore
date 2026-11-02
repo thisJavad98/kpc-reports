@@ -49,3 +49,4 @@ backend/prisma/*.db-journal
 coverage/
 .cache/
 *.pem
+.vercel

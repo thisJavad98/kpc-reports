@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import { ConfirmModal, type ConfirmOptions } from "@/components/ConfirmModal";
-import { useLocale } from "@/lib/i18n/locale";
+import { t } from "@/lib/i18n/dictionaries";
 
 type ConfirmContextValue = {
   confirm: (options: ConfirmOptions) => Promise<boolean>;
@@ -18,7 +18,6 @@ type ConfirmContextValue = {
 const ConfirmContext = createContext<ConfirmContextValue | null>(null);
 
 export function ConfirmProvider({ children }: { children: React.ReactNode }) {
-  const { t } = useLocale();
   const [open, setOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [options, setOptions] = useState<ConfirmOptions | null>(null);

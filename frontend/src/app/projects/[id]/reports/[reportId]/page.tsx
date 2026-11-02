@@ -18,7 +18,7 @@ import { api, ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { useConfirm } from "@/lib/confirm";
 import { formatDateTime } from "@/lib/format";
-import { useLocale } from "@/lib/i18n/locale";
+import { t } from "@/lib/i18n/dictionaries";
 import { useSetMobileChrome } from "@/lib/mobile-chrome";
 import type { ReportDetail } from "@/lib/types";
 
@@ -26,7 +26,6 @@ export default function ReportDetailPage() {
   const params = useParams<{ id: string; reportId: string }>();
   const router = useRouter();
   const { token, user } = useAuth();
-  const { t, locale } = useLocale();
   const { confirm } = useConfirm();
   const [report, setReport] = useState<ReportDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -48,7 +47,7 @@ export default function ReportDetailPage() {
         <PencilSimple size={20} weight="bold" />
       </IconButton>
     );
-  }, [isAdmin, report, router, params.id, t]);
+  }, [isAdmin, report, router, params.id]);
 
   useSetMobileChrome(
     loading ? t("openingReport") : report?.title ?? t("reportSingular"),
@@ -67,7 +66,7 @@ export default function ReportDetailPage() {
     } finally {
       setLoading(false);
     }
-  }, [token, params.reportId, t]);
+  }, [token, params.reportId]);
 
   useEffect(() => {
     void load();
@@ -100,7 +99,7 @@ export default function ReportDetailPage() {
           href={`/projects/${params.id}`}
           className="inline-flex min-h-11 items-center gap-1.5 text-[14px] text-[var(--muted)] hover:text-[var(--text)] md:min-h-0 md:text-[13px]"
         >
-          <ArrowLeft size={14} className="rtl:rotate-180" />
+          <ArrowLeft size={14} />
           {t("backToProject")}
         </Link>
       </div>
@@ -113,7 +112,7 @@ export default function ReportDetailPage() {
           report
             ? t("writtenBy", {
                 name: report.createdBy.name,
-                date: formatDateTime(report.updatedAt, locale),
+                date: formatDateTime(report.updatedAt),
               })
             : undefined
         }

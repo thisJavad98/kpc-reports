@@ -19,13 +19,12 @@ import {
 import { api, ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { formatDate } from "@/lib/format";
-import { useLocale } from "@/lib/i18n/locale";
+import { t } from "@/lib/i18n/dictionaries";
 import { useSetMobileChrome } from "@/lib/mobile-chrome";
 import type { ProjectSummary } from "@/lib/types";
 
 export default function ProjectsPage() {
   const { token, user } = useAuth();
-  const { t, locale } = useLocale();
   const [projects, setProjects] = useState<ProjectSummary[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -47,7 +46,7 @@ export default function ProjectsPage() {
         <Plus size={22} weight="bold" />
       </IconButton>
     );
-  }, [isAdmin, creating, t]);
+  }, [isAdmin, creating]);
 
   useSetMobileChrome(t("projects"), mobileAction);
 
@@ -63,7 +62,7 @@ export default function ProjectsPage() {
     } finally {
       setLoading(false);
     }
-  }, [token, t]);
+  }, [token]);
 
   useEffect(() => {
     void load();
@@ -202,18 +201,8 @@ export default function ProjectsPage() {
                   icon={<Briefcase size={20} weight="duotone" />}
                   title={project.name}
                   subtitle={`${project.description || t("noDescription")} · ${t("updated", {
-                    date: formatDate(project.updatedAt, locale),
+                    date: formatDate(project.updatedAt),
                   })}`}
-                  trailing={
-                    <span className="shrink-0 text-end">
-                      <span className="block font-mono text-[14px] text-[var(--orange)]">
-                        {project.reportCount}
-                      </span>
-                      <span className="block text-[12px] text-[var(--muted)]">
-                        {project.reportCount === 1 ? t("report") : t("reports")}
-                      </span>
-                    </span>
-                  }
                 />
               </motion.li>
             ))}

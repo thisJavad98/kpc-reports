@@ -1,15 +1,13 @@
-import type { Locale } from "./i18n/dictionaries";
-
-export function formatDate(value: string, locale: Locale = "en") {
-  return new Intl.DateTimeFormat(locale === "fa" ? "fa-IR" : "en", {
+export function formatDate(value: string) {
+  return new Intl.DateTimeFormat("en", {
     year: "numeric",
     month: "short",
     day: "numeric",
   }).format(new Date(value));
 }
 
-export function formatDateTime(value: string, locale: Locale = "en") {
-  return new Intl.DateTimeFormat(locale === "fa" ? "fa-IR" : "en", {
+export function formatDateTime(value: string) {
+  return new Intl.DateTimeFormat("en", {
     year: "numeric",
     month: "short",
     day: "numeric",

@@ -1,4 +1,11 @@
-import type { ProjectDetail, ProjectSummary, ReportDetail, User } from "./types";
+import type {
+  ProjectDetail,
+  ProjectField,
+  ProjectSummary,
+  ProjectTab,
+  ReportDetail,
+  User,
+} from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api";
 
@@ -72,6 +79,47 @@ export const api = {
       method: "DELETE",
       token,
     }),
+
+  createProjectField: (
+    token: string,
+    projectId: string,
+    body: { tab: ProjectTab; key: string; value?: string },
+  ) =>
+    request<{ field: ProjectField }>(`/projects/${projectId}/fields`, {
+      method: "POST",
+      token,
+      body,
+    }),
+
+  updateProjectField: (
+    token: string,
+    projectId: string,
+    fieldId: string,
+    body: { key?: string; value?: string },
+  ) =>
+    request<{ field: ProjectField }>(
+      `/projects/${projectId}/fields/${fieldId}`,
+      {
+        method: "PATCH",
+        token,
+        body,
+      },
+    ),
+
+  deleteProjectField: (token: string, projectId: string, fieldId: string) =>
+    request<{ ok: boolean }>(`/projects/${projectId}/fields/${fieldId}`, {
+      method: "DELETE",
+      token,
+    }),
+
+  updateProgressLastUpdate: (token: string, projectId: string) =>
+    request<{ progressLastUpdatedAt: string }>(
+      `/projects/${projectId}/progress-last-update`,
+      {
+        method: "POST",
+        token,
+      },
+    ),
 
   getReport: (token: string, id: string) =>
     request<{ report: ReportDetail }>(`/reports/${id}`, { token }),

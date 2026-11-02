@@ -16,14 +16,13 @@ import {
 } from "@/components/ui";
 import { api, ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
-import { useLocale } from "@/lib/i18n/locale";
+import { t } from "@/lib/i18n/dictionaries";
 import { useSetMobileChrome } from "@/lib/mobile-chrome";
 
 export default function EditReportPage() {
   const params = useParams<{ id: string; reportId: string }>();
   const router = useRouter();
   const { token, user } = useAuth();
-  const { t } = useLocale();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
@@ -50,7 +49,7 @@ export default function EditReportPage() {
         setError(err instanceof ApiError ? err.message : t("loadReportFailed"));
       })
       .finally(() => setLoading(false));
-  }, [token, params.reportId, t]);
+  }, [token, params.reportId]);
 
   async function onSubmit(event: FormEvent) {
     event.preventDefault();
@@ -76,7 +75,7 @@ export default function EditReportPage() {
           href={`/projects/${params.id}/reports/${params.reportId}`}
           className="inline-flex min-h-11 items-center gap-1.5 text-[14px] text-[var(--muted)] hover:text-[var(--text)] md:min-h-0 md:text-[13px]"
         >
-          <ArrowLeft size={14} className="rtl:rotate-180" />
+          <ArrowLeft size={14} />
           {t("backToReport")}
         </Link>
       </div>

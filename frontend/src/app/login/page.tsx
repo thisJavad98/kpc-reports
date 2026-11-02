@@ -5,14 +5,12 @@ import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import { useAuth } from "@/lib/auth";
 import { ApiError } from "@/lib/api";
-import { useLocale } from "@/lib/i18n/locale";
-import { LanguageToggle } from "@/components/LanguageToggle";
+import { t } from "@/lib/i18n/dictionaries";
 import { LogoLockup } from "@/components/Mark";
 import { ErrorBanner, Field, PrimaryButton } from "@/components/ui";
 
 export default function LoginPage() {
   const { user, loading, login } = useAuth();
-  const { t } = useLocale();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,9 +39,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-[100dvh] bg-[var(--ground)] px-4 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(1.5rem,env(safe-area-inset-top))] sm:py-10">
-      <div className="mx-auto mb-6 flex w-full max-w-[420px] justify-end">
-        <LanguageToggle />
-      </div>
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
