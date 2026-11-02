@@ -14,8 +14,8 @@ export default function LoginPage() {
   const { user, loading, login } = useAuth();
   const { t } = useLocale();
   const router = useRouter();
-  const [email, setEmail] = useState("admin@kpc.local");
-  const [password, setPassword] = useState("admin123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -84,11 +84,6 @@ export default function LoginPage() {
             {submitting ? t("signingIn") : t("signIn")}
           </PrimaryButton>
         </form>
-
-        <div className="mt-4 space-y-1 text-[12px] leading-5 text-[var(--muted)]">
-          <p>{t("demoAdmin")}</p>
-          <p>{t("demoViewer")}</p>
-        </div>
       </motion.div>
     </div>
   );
