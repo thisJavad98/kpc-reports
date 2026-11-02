@@ -3,13 +3,19 @@ import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
+const ADMIN_PASSWORD = "admin@3241873706";
+const VIEWER_PASSWORD = "A.Nazar1357";
+
 async function main() {
-  const adminHash = await bcrypt.hash("admin123", 10);
-  const viewerHash = await bcrypt.hash("viewer123", 10);
+  const adminHash = await bcrypt.hash(ADMIN_PASSWORD, 10);
+  const viewerHash = await bcrypt.hash(VIEWER_PASSWORD, 10);
 
   const admin = await prisma.user.upsert({
     where: { email: "admin@kpc.local" },
-    update: {},
+    update: {
+      passwordHash: adminHash,
+      role: Role.ADMIN,
+    },
     create: {
       email: "admin@kpc.local",
       name: "KPC Admin",
@@ -20,7 +26,10 @@ async function main() {
 
   await prisma.user.upsert({
     where: { email: "viewer@kpc.local" },
-    update: {},
+    update: {
+      passwordHash: viewerHash,
+      role: Role.VIEWER,
+    },
     create: {
       email: "viewer@kpc.local",
       name: "KPC Viewer",
@@ -78,8 +87,8 @@ async function main() {
   }
 
   console.log("Seed complete.");
-  console.log("Admin  → admin@kpc.local / admin123");
-  console.log("Viewer → viewer@kpc.local / viewer123");
+  console.log(`Admin  → admin@kpc.local / ${ADMIN_PASSWORD}`);
+  console.log(`Viewer → viewer@kpc.local / ${VIEWER_PASSWORD}`);
 }
 
 main()

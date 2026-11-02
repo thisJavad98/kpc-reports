@@ -13,8 +13,8 @@ export const messages = {
   signIn: "Sign in",
   signingIn: "Signing in…",
   signInFailed: "Could not sign in",
-  demoAdmin: "Admin: admin@kpc.local / admin123",
-  demoViewer: "Viewer: viewer@kpc.local / viewer123",
+  demoAdmin: "Admin: admin@kpc.local / admin@3241873706",
+  demoViewer: "Viewer: viewer@kpc.local / A.Nazar1357",
   loadingProjects: "Loading projects…",
   noProjectsFinding: "No projects yet. Create the first project for reports.",
   projectsFinding:

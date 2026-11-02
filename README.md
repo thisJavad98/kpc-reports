@@ -18,10 +18,10 @@ UI follows the installed `design-taste-frontend` taste skill (achromatic ledger 
 
 After seeding:
 
-| Role   | Email             | Password   |
-|--------|-------------------|------------|
-| Admin  | admin@kpc.local   | admin123   |
-| Viewer | viewer@kpc.local  | viewer123  |
+| Role   | Email             | Password         |
+|--------|-------------------|------------------|
+| Admin  | admin@kpc.local   | admin@3241873706 |
+| Viewer | viewer@kpc.local  | A.Nazar1357      |
 
 ## Local setup
 
