@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
+import { SiteFooter } from "@/components/SiteFooter";
 import { AuthProvider } from "@/lib/auth";
 import { ConfirmProvider } from "@/lib/confirm";
 import { LocaleProvider } from "@/lib/i18n/locale";
@@ -38,7 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="min-h-full font-sans">
+      <body className="min-h-full pb-14 font-sans">
         <LocaleProvider>
           <AuthProvider>
             <ConfirmProvider>
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </ConfirmProvider>
           </AuthProvider>
         </LocaleProvider>
+        <SiteFooter />
       </body>
     </html>
   );
