@@ -1,0 +1,51 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# env / secrets
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# builds / caches
+.next/
+dist/
+build/
+out/
+.turbo/
+*.tsbuildinfo
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+.cursor/
+
+# vercel
+.vercel/
+
+# prisma
+backend/prisma/*.db
+backend/prisma/*.db-journal
+
+# taste-skill working files
+.taste-skill/**/shot-*.png
+.taste-skill/**/inspect-*.json
+.taste-skill/**/before/
+.taste-skill/**/after/
+
+# misc
+coverage/
+.cache/
+*.pem
