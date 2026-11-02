@@ -20,6 +20,7 @@ import { useConfirm } from "@/lib/confirm";
 import { formatDateTime } from "@/lib/format";
 import { t } from "@/lib/i18n/dictionaries";
 import { useSetMobileChrome } from "@/lib/mobile-chrome";
+import { projectTabHref } from "@/lib/project-tabs";
 import type { ReportDetail } from "@/lib/types";
 
 export default function ReportDetailPage() {
@@ -85,7 +86,7 @@ export default function ReportDetailPage() {
     setDeleting(true);
     try {
       await api.deleteReport(token, report.id);
-      router.replace(`/projects/${params.id}`);
+      router.replace(projectTabHref(params.id));
     } catch (err) {
       setError(err instanceof ApiError ? err.message : t("deleteReportFailed"));
       setDeleting(false);
@@ -96,7 +97,7 @@ export default function ReportDetailPage() {
     <AppShell>
       <div className="mb-3 md:mb-4">
         <Link
-          href={`/projects/${params.id}`}
+          href={projectTabHref(params.id)}
           className="inline-flex min-h-11 items-center gap-1.5 text-[14px] text-[var(--muted)] hover:text-[var(--text)] md:min-h-0 md:text-[13px]"
         >
           <ArrowLeft size={14} />

@@ -21,6 +21,7 @@ import { useAuth } from "@/lib/auth";
 import { formatDate } from "@/lib/format";
 import { t } from "@/lib/i18n/dictionaries";
 import { useSetMobileChrome } from "@/lib/mobile-chrome";
+import { projectTabHref } from "@/lib/project-tabs";
 import type { ProjectSummary } from "@/lib/types";
 
 export default function ProjectsPage() {
@@ -197,7 +198,7 @@ export default function ProjectsPage() {
                 transition={{ delay: index * 0.03, duration: 0.25 }}
               >
                 <ListRowLink
-                  href={`/projects/${project.id}`}
+                  href={projectTabHref(project.id)}
                   icon={<Briefcase size={20} weight="duotone" />}
                   title={project.name}
                   subtitle={`${project.description || t("noDescription")} · ${t("updated", {

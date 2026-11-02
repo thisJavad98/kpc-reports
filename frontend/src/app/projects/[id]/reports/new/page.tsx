@@ -18,6 +18,7 @@ import { api, ApiError } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { t } from "@/lib/i18n/dictionaries";
 import { useSetMobileChrome } from "@/lib/mobile-chrome";
+import { projectTabHref } from "@/lib/project-tabs";
 
 export default function NewReportPage() {
   const params = useParams<{ id: string }>();
@@ -32,7 +33,7 @@ export default function NewReportPage() {
 
   useEffect(() => {
     if (user && user.role !== "ADMIN") {
-      router.replace(`/projects/${params.id}`);
+      router.replace(projectTabHref(params.id));
     }
   }, [user, router, params.id]);
 
@@ -57,7 +58,7 @@ export default function NewReportPage() {
     <AppShell>
       <div className="mb-3 md:mb-4">
         <Link
-          href={`/projects/${params.id}`}
+          href={projectTabHref(params.id)}
           className="inline-flex min-h-11 items-center gap-1.5 text-[14px] text-[var(--muted)] hover:text-[var(--text)] md:min-h-0 md:text-[13px]"
         >
           <ArrowLeft size={14} />
@@ -92,7 +93,7 @@ export default function NewReportPage() {
             <GhostButton
               type="button"
               className="w-full sm:w-auto"
-              onClick={() => router.push(`/projects/${params.id}`)}
+              onClick={() => router.push(projectTabHref(params.id))}
             >
               {t("cancel")}
             </GhostButton>
