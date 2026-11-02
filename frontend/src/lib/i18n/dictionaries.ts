@@ -17,8 +17,7 @@ export const messages = {
   demoViewer: "Viewer: viewer@kpc.local / A.Nazar1357",
   loadingProjects: "Loading projects…",
   noProjectsFinding: "No projects yet. Create the first project for reports.",
-  projectsFinding:
-    "{projects} project{projectsPlural} with {reports} report{reportsPlural}.",
+  projectsFinding: "{projects} project{projectsPlural}.",
   newProject: "New project",
   cancel: "Cancel",
   close: "Close",

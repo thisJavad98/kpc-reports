@@ -90,11 +90,6 @@ export default function ProjectsPage() {
     }
   }
 
-  const totalReports = projects.reduce(
-    (sum, project) => sum + project.reportCount,
-    0,
-  );
-
   return (
     <AppShell>
       <PageHeader
@@ -107,8 +102,6 @@ export default function ProjectsPage() {
               : t("projectsFinding", {
                   projects: projects.length,
                   projectsPlural: projects.length === 1 ? "" : "s",
-                  reports: totalReports,
-                  reportsPlural: totalReports === 1 ? "" : "s",
                 })
         }
         action={
